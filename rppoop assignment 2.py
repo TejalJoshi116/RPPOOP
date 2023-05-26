@@ -1,12 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
-
-
-#speak() and eat() methods in the Animal class use compile-time polymorphism. 
-
-
 class Animal:
     def __init__(self, name):
         self.name = name
@@ -41,35 +32,40 @@ class Bird(Animal):
     def eat(self):
         return "Seeds"
 
-
+#made a list to have animals in the program
 animals = [Sheep("Shaun"), Tiger("Raja"), Bird("Tweety")]
 
 while True:
-    print("1 - Speak")
-    print("2 - Eat")
-    print("0 - Quit")
-    option = int(input("Enter option: "))
+    print("==== Animal Information Menu ====")
+    print("1. Display Animal Names")
+    print("2. Make Animals Speak")
+    print("3. Feed Animals")
+    print("0. Quit")
 
-    if option == 1:
+    option = input("Enter option: ")
+
+    if option == "1":
+        print("=== Animal Names ===")
+        for animal in animals:
+            print(animal.name)
+        print()
+
+    elif option == "2":
+        print("=== Animals Speaking ===")
         for animal in animals:
             print(animal.name, "says", animal.speak())
-    elif option == 2:
+        print()
+
+    elif option == "3":
+        print("=== Feed Animals ===")
         for animal in animals:
             print(animal.name, "eats", animal.eat())
-    elif option == 0:
+        print()
+
+    elif option == "0":
+        print("Exiting the program. Goodbye!")
         break
+
     else:
         print("Invalid option. Please try again.")
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
+        print()
