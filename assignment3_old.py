@@ -34,28 +34,52 @@ class BankAccount:
         print("Account Type:", self.account_type)
         print("Balance:", self.balance)
 
-# Creating a bank account object
-account = BankAccount("John Doe", "1234567890", "Savings", 5000)
+
+def create_bank_account():
+    name = input("Enter account holder name: ")
+    account_number = input("Enter account number (10 digits): ")
+    account_type = input("Enter account type: ")
+    balance = float(input("Enter initial balance: "))
+
+    account = BankAccount(name, account_number, account_type, balance)
+    return account
+
+
+# Main program
+account = None
 
 while True:
     print("\n----- Bank Account Menu -----")
-    print("1. Deposit Amount")
-    print("2. Withdraw Amount")
-    print("3. Display Account Details")
+    print("1. Create a new Bank Account")
+    print("2. Deposit Amount")
+    print("3. Withdraw Amount")
+    print("4. Display Account Details")
     print("0. Exit")
 
-    choice = input("Enter your choice (0-3): ")
+    choice = input("Enter your choice (0-4): ")
 
     if choice == "1":
-        amount = float(input("Enter the amount to deposit: "))
-        if account.validate_account_number():
-            account.deposit(amount)
+        account = create_bank_account()
+        print("Bank account created successfully.")
     elif choice == "2":
-        amount = float(input("Enter the amount to withdraw: "))
-        if account.validate_account_number():
-            account.withdraw(amount)
+        if account is None:
+            print("No bank account found. Please create a new account first.")
+        else:
+            amount = float(input("Enter the amount to deposit: "))
+            if account.validate_account_number():
+                account.deposit(amount)
     elif choice == "3":
-        account.display_details()
+        if account is None:
+            print("No bank account found. Please create a new account first.")
+        else:
+            amount = float(input("Enter the amount to withdraw: "))
+            if account.validate_account_number():
+                account.withdraw(amount)
+    elif choice == "4":
+        if account is None:
+            print("No bank account found. Please create a new account first.")
+        else:
+            account.display_details()
     elif choice == "0":
         print("Thank you for using the Bank Account System. Goodbye!")
         break
